@@ -46,10 +46,10 @@ int print_number(int n)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0;
+	int count = 0, i, j;
 
 	va_start(args, format);
-	for (int i = 0; format[i] != '\0'; i++)
+	for (i = 0; format[i] != '\0'; i++)
 	{
 		if (format[i] == '%')
 		{
@@ -57,13 +57,17 @@ int _printf(const char *format, ...)
 			switch (format[i])
 			{
 			case 'c':
-				count += write(1, &va_arg(args, int), 1);
+			{
+				int c = va_arg(args, int);
+
+				count += write(1, &c, 1);
 				break;
+			}
 			case 's':
 			{
 				char *str = va_arg(args, char *);
 
-				for (int j = 0; str[j] != '\0'; j++)
+				for (j = 0; str[j] != '\0'; j++)
 					count += write(1, &str[j], 1);
 				break;
 			}
@@ -73,8 +77,6 @@ int _printf(const char *format, ...)
 			case 'd':
 			case 'i':
 				count += print_number(va_arg(args, int));
-				break;
-			default:
 				break;
 			}
 		}
