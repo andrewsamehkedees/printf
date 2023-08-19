@@ -45,10 +45,11 @@ int print_number(int n)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	va_start(args, format);
 	int count = 0;
+	int i = 0;
 
-	for (int i = 0; format[i] != '\0'; i++)
+	va_start(args, format);
+	while (format && format[i])
 	{
 		if (format[i] == '%')
 		{
@@ -61,6 +62,7 @@ int _printf(const char *format, ...)
 			case 's':
 			{
 				char *str = va_arg(args, char *);
+
 				for (int j = 0; str[j] != '\0'; j++)
 					count += write(1, &str[j], 1);
 				break;
@@ -78,6 +80,7 @@ int _printf(const char *format, ...)
 		}
 		else
 			count += write(1, &format[i], 1);
+	i++;
 	}
 	va_end(args);
 	return (count);
