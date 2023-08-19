@@ -41,7 +41,7 @@ int print_number(int n)
 /**
  * _printf - produces output according to a format
  * @format: character string
- * Return: the number of characters printed
+ * Return: the number of characters
  */
 int _printf(const char *format, ...)
 {
