@@ -56,7 +56,7 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == 'c')
 			{
-				count += write(1, &va_arg(args, int), 1);
+				count += _putchar(va_arg(args, int));
 			}
 			else if (format[i] == 's')
 			{
