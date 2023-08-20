@@ -60,7 +60,7 @@ int _printf(const char *format, ...)
 
 				count += write(1, &c, 1);
 			}
-			else if(format[i] == 's')
+			else if (format[i] == 's')
 			{
 				char *str = va_arg(args, char *);
 
