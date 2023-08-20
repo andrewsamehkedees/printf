@@ -56,11 +56,9 @@ int _printf(const char *format, ...)
 			i++;
 			if (format[i] == 'c')
 			{
-				int c = va_arg(args, int);
-
-				count += write(1, &c, 1);
+				count += write(1, &va_arg(args, int), 1);
 			}
-			else if (format[i] == 's')
+			else if(format[i] == 's')
 			{
 				char *str = va_arg(args, char *);
 
@@ -71,6 +69,16 @@ int _printf(const char *format, ...)
 				count += write(1, &format[i], 1);
 			else if (format[i] == 'd' || format[i] == 'i')
 				count += print_number(va_arg(args, int));
+			else if (format[i] == 'u')
+				count += print_unsigned(va_arg(args, unsigned int));
+			else if (format[i] == 'o')
+				count += print_octal(va_arg(args, unsigned int));
+			else if (format[i] == 'x')
+				count += print_hex(va_arg(args, unsigned int), 0);
+			else if (format[i] == 'X')
+				count += print_hex(va_arg(args, unsigned int), 1);
+			else if (format[i] == 'p')
+				count += print_address(va_arg(args, void *));
 		}
 		else
 			count += write(1, &format[i], 1);
