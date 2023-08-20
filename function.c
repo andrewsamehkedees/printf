@@ -1,6 +1,6 @@
 #include "main.h"
 #include <stdarg.h>
-
+#include <stdint.h>
 /**
  * print_unsigned_int - prints an unsigned integer
  * @n: unsigned integer to be printed
@@ -66,8 +66,29 @@ int print_address(void *p)
 	_putchar('x');
 	count += 2;
 	if (n == 0)
+	{
 		_putchar('0');
+		count++;
+	}
 	else
-		count += print_hex(n, 0);
+		count += print_hex_address(n);
+	return (count);
+}
+
+/**
+ * print_hex_address - recursive function to print an address in hexadecimal
+ * @n: address to be printed
+ * Return: number of characters
+ */
+int print_hex_address(unsigned long n)
+{
+	int count = 0;
+	char c;
+
+	if (n / 16 != 0)
+		count += print_hex_address(n / 16);
+	c = (n % 16) < 10 ? (n % 16) + '0' : (n % 16) - 10 + 'a';
+	_putchar(c);
+	count++;
 	return (count);
 }

@@ -14,6 +14,18 @@ int _putchar(char c)
 }
 
 /**
+ * print_unknown - prints an unknown
+ * @c: the character
+ * Return: number of characters
+ */
+int print_unknown(char c)
+{
+	_putchar('%');
+	_putchar(c);
+	return (2);
+}
+
+/**
  * print_number - prints an integer
  * @n: integer to be printed
  * Return: number of characters
@@ -39,6 +51,20 @@ int print_number(int n)
 }
 
 /**
+ * print_string - prints a string
+ * @str: string to be printed
+ * Return: number of characters
+ */
+int print_string(char *str)
+{
+	int count = 0, j;
+
+	for (j = 0; str[j] != '\0'; j++)
+		count += write(1, &str[j], 1);
+	return (count);
+}
+
+/**
  * _printf - produces output according to a format
  * @format: character string
  * Return: the number of characters
@@ -46,7 +72,7 @@ int print_number(int n)
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int count = 0, i, j;
+	int count = 0, i;
 
 	va_start(args, format);
 	for (i = 0; format[i] != '\0'; i++)
@@ -59,12 +85,7 @@ int _printf(const char *format, ...)
 				count += _putchar(va_arg(args, int));
 			}
 			else if (format[i] == 's')
-			{
-				char *str = va_arg(args, char *);
-
-				for (j = 0; str[j] != '\0'; j++)
-					count += write(1, &str[j], 1);
-			}
+				count += print_string(va_arg(args, char *));
 			else if (format[i] == '%')
 				count += write(1, &format[i], 1);
 			else if (format[i] == 'd' || format[i] == 'i')
@@ -79,6 +100,8 @@ int _printf(const char *format, ...)
 				count += print_hex(va_arg(args, unsigned int), 1);
 			else if (format[i] == 'p')
 				count += print_address(va_arg(args, void *));
+			else
+				count += print_unknown(format[i]);
 		}
 		else
 			count += write(1, &format[i], 1);
