@@ -54,31 +54,23 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			switch (format[i])
-			{
-			case 'c':
+			if (format[i] == 'c')
 			{
 				int c = va_arg(args, int);
 
 				count += write(1, &c, 1);
-				break;
 			}
-			case 's':
+			else if (format[i] == 's')
 			{
 				char *str = va_arg(args, char *);
 
 				for (j = 0; str[j] != '\0'; j++)
 					count += write(1, &str[j], 1);
-				break;
 			}
-			case '%':
+			else if (format[i] == '%')
 				count += write(1, &format[i], 1);
-				break;
-			case 'd':
-			case 'i':
+			else if (format[i] == 'd' || format[i] == i)
 				count += print_number(va_arg(args, int));
-				break;
-			}
 		}
 		else
 			count += write(1, &format[i], 1);
