@@ -2,15 +2,16 @@
 #include <stdarg.h>
 
 /**
- * print_unsigned - prints an unsigned integer
+ * print_unsigned_int - prints an unsigned integer
  * @n: unsigned integer to be printed
  * Return: number of characters
  */
-int print_unsigned(unsigned int n)
+int print_unsigned_int(unsigned int n)
 {
 	int count = 0;
+
 	if (n / 10 != 0)
-		count += print_unsigned(n / 10);
+		count += print_unsigned_int(n / 10);
 	_putchar((n % 10) + '0');
 	count++;
 	return (count);
@@ -24,6 +25,7 @@ int print_unsigned(unsigned int n)
 int print_octal(unsigned int n)
 {
 	int count = 0;
+
 	if (n / 8 != 0)
 		count += print_octal(n / 8);
 	_putchar((n % 8) + '0');
