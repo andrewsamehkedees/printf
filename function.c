@@ -8,13 +8,13 @@
  */
 int print_unsigned_int(unsigned int n)
 {
-        int count = 0;
+	int count = 0;
 
-        if (n / 10 != 0)
-                count += print_unsigned_int(n / 10);
-        _putchar((n % 10) + '0');
-        count++;
-        return (count);
+	if (n / 10 != 0)
+		count += print_unsigned_int(n / 10);
+	_putchar((n % 10) + '0');
+	count++;
+	return (count);
 }
 
 /**
@@ -24,13 +24,13 @@ int print_unsigned_int(unsigned int n)
  */
 int print_octal(unsigned int n)
 {
-        int count = 0;
+	int count = 0;
 
-        if (n / 8 != 0)
-                count += print_octal(n / 8);
-        _putchar((n % 8) + '0');
-        count++;
-        return (count);
+	if (n / 8 != 0)
+		count += print_octal(n / 8);
+	_putchar((n % 8) + '0');
+	count++;
+	return (count);
 }
 
 /**
@@ -41,15 +41,15 @@ int print_octal(unsigned int n)
  */
 int print_hex(unsigned int n, int uppercase)
 {
-        int count = 0;
-        char c;
+	int count = 0;
+	char c;
 
-        if (n / 16 != 0)
-                count += print_hex(n / 16, uppercase);
-        c = (n % 16) < 10 ? (n % 16) + '0' : (n % 16) - 10 + (uppercase ? 'A' : 'a');
-        _putchar(c);
-        count++;
-        return (count);
+	if (n / 16 != 0)
+		count += print_hex(n / 16, uppercase);
+	c = (n % 16) < 10 ? (n % 16) + '0' : (n % 16) - 10 + (uppercase ? 'A' : 'a');
+	_putchar(c);
+	count++;
+	return (count);
 }
 
 /**
@@ -59,20 +59,20 @@ int print_hex(unsigned int n, int uppercase)
  */
 int print_address(void *p)
 {
-        int count = 0;
-        unsigned long n = (unsigned long)p;
+	int count = 0;
+	unsigned long n = (unsigned long)p;
 
-        _putchar('0');
-        _putchar('x');
-        count += 2;
-        if (n == 0)
-        {
-                _putchar('0');
-                count++;
-        }
-        else
-                count += print_hex_address(n);
-        return (count);
+	_putchar('0');
+	_putchar('x');
+	count += 2;
+	if (n == 0)
+	{
+		_putchar('0');
+		count++;
+	}
+	else
+		count += print_hex_address(n);
+	return (count);
 }
 
 /**
@@ -82,14 +82,13 @@ int print_address(void *p)
  */
 int print_hex_address(unsigned long n)
 {
-        int count = 0;
-        char c;
+	int count = 0;
+	char c;
 
-        if (n / 16 != 0)
-                count += print_hex_address(n / 16);
-        c = (n % 16) < 10 ? (n % 16) + '0' : (n % 16) - 10 + 'a';
-        _putchar(c);
-        count++;
-        return (count);
+	if (n / 16 != 0)
+		count += print_hex_address(n / 16);
+	c = (n % 16) < 10 ? (n % 16) + '0' : (n % 16) - 10 + 'a';
+	_putchar(c);
+	count++;
+	return (count);
 }
-                                                                                                          94,1          Bot                                                                                                          1,1           Top
